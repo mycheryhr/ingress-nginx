@@ -426,6 +426,10 @@ cd "$BUILD_PATH/nginx-$NGINX_VERSION"
 # apply nginx patches
 for PATCH in `ls /patches`;do
   echo "Patch: $PATCH"
+        if [[ "$PATCH" == "28_nginx-1.27.1-CVE-2025-23419.patch" ]]; then
+                echo "Skipping $PATCH for nginx $NGINX_VERSION"
+                continue
+        fi
   if [[ "$PATCH" == *.txt ]]; then
     patch -p0 < /patches/$PATCH
   else
