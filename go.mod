@@ -1,6 +1,6 @@
 module k8s.io/ingress-nginx
 
-go 1.26.1
+go 1.26.3
 
 require (
 	dario.cat/mergo v1.0.2
@@ -32,10 +32,10 @@ require (
 	go.yaml.in/yaml/v3 v3.0.4
 	golang.org/x/crypto v0.49.0
 	golang.org/x/oauth2 v0.36.0
-	google.golang.org/grpc v1.79.3
+	google.golang.org/grpc v1.81.1
 	gopkg.in/go-playground/pool.v3 v3.1.1
 	gopkg.in/mcuadros/go-syslog.v2 v2.3.0
-	helm.sh/helm/v4 v4.1.3
+	helm.sh/helm/v4 v4.2.0
 	k8s.io/api v0.35.3
 	k8s.io/apiextensions-apiserver v0.35.3
 	k8s.io/apimachinery v0.35.3

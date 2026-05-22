@@ -18,7 +18,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-export NGINX_VERSION=1.27.1
+export NGINX_VERSION=1.30.1
 
 # Check for recent changes: https://github.com/vision5/ngx_devel_kit/compare/v0.3.3...master
 export NDK_VERSION=v0.3.3
@@ -41,11 +41,11 @@ export MODSECURITY_LIB_VERSION=v3.0.14
 # Check for recent changes: https://github.com/coreruleset/coreruleset/compare/v4.22.0...main
 export OWASP_MODSECURITY_CRS_VERSION=v4.22.0
 
-# Check for recent changes: https://github.com/openresty/lua-nginx-module/compare/v0.10.28...master
-export LUA_NGX_VERSION=v0.10.28
+# Check for recent changes: https://github.com/openresty/lua-nginx-module/compare/v0.10.29...master
+export LUA_NGX_VERSION=v0.10.29
 
-# Check for recent changes: https://github.com/openresty/stream-lua-nginx-module/compare/v0.0.16...master
-export LUA_STREAM_NGX_VERSION=v0.0.16
+# Check for recent changes: https://github.com/openresty/stream-lua-nginx-module/compare/v0.0.17...master
+export LUA_STREAM_NGX_VERSION=v0.0.17
 
 # Check for recent changes: https://github.com/openresty/lua-upstream-nginx-module/compare/v0.07...master
 export LUA_UPSTREAM_VERSION=v0.07
@@ -65,8 +65,8 @@ export LUA_RESTY_BALANCER=v0.05
 # Check for recent changes: https://github.com/openresty/lua-resty-lrucache/compare/v0.15...master
 export LUA_RESTY_CACHE=v0.15
 
-# Check for recent changes: https://github.com/openresty/lua-resty-core/compare/v0.1.31...master
-export LUA_RESTY_CORE=v0.1.31
+# Check for recent changes: https://github.com/openresty/lua-resty-core/compare/v0.1.32...master
+export LUA_RESTY_CORE=v0.1.32
 
 # Check for recent changes: https://github.com/cloudflare/lua-resty-cookie/compare/f418d77082eaef48331302e84330488fdc810ef4...master
 export LUA_RESTY_COOKIE_VERSION=f418d77082eaef48331302e84330488fdc810ef4
@@ -104,8 +104,8 @@ export OPENTELEMETRY_CPP_VERSION=v1.19.0
 # Check for recent changes: https://github.com/open-telemetry/opentelemetry-proto/compare/v1.5.0...main
 export OPENTELEMETRY_PROTO_VERSION=v1.5.0
 
-# Check for recent changes: https://github.com/nginx/njs/compare/0.9.0...master
-export NJS_VERSION=0.9.0
+# Check for recent changes: https://github.com/nginx/njs/compare/0.9.9...master
+export NJS_VERSION=0.9.9
 
 export BUILD_PATH=/tmp/build
 
@@ -189,7 +189,7 @@ mkdir --verbose -p "$BUILD_PATH"
 cd "$BUILD_PATH"
 
 # download, verify and extract the source files
-get_src 66dc7081488811e9f925719e34d1b4504c2801c81dee2920e5452a86b11405ae \
+get_src 99765000d974896b31ca5882d8c279ce3fe7ef6f5c6f9f0a967ed7fd3407f9cc \
         "https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz"
 
 get_src aa961eafb8317e0eb8da37eb6e2c9ff42267edd18b56947384e719b85188f58b \
