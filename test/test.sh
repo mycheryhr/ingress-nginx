@@ -30,4 +30,4 @@ if [ -z "${PKG}" ]; then
 fi
 
 go test -v \
-  $(go list ./... | grep -v vendor | grep -v '/test/e2e' | grep -v images | grep -v "docs/examples")
+  $(go list -e -f '{{if not .Incomplete}}{{.ImportPath}}{{end}}' "${PKG}/..." | grep -v "^${PKG}$" | grep -v vendor | grep -v '/test/e2e' | grep -v images | grep -v "docs/examples")
