@@ -29,5 +29,14 @@ if [ -z "${PKG}" ]; then
   exit 1
 fi
 
-go test -v \
-  $(go list -e -f '{{if not .Incomplete}}{{.ImportPath}}{{end}}' "${PKG}/..." | grep -v "^${PKG}$" | grep -v vendor | grep -v '/test/e2e' | grep -v images | grep -v "docs/examples")
+packages=()
+while IFS= read -r pkg; do
+  packages+=("$pkg")
+done < <(go list ./... | grep -v "^${PKG}$" | grep -v vendor | grep -v '/test/e2e' | grep -v images | grep -v "docs/examples")
+
+if [ "${#packages[@]}" -eq 0 ]; then
+  echo "no Go test packages discovered"
+  exit 1
+fi
+
+go test -v "${packages[@]}"

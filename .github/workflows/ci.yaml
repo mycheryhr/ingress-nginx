@@ -196,6 +196,7 @@ jobs:
 
           echo "creating images cache..."
           docker save \
+            registry.k8s.io/ingress-nginx/nginx:${TAGNGINX} \
             nginx-ingress-controller:e2e \
             ingress-controller/controller:1.0.0-dev \
             ingress-controller/controller-chroot:1.0.0-dev \

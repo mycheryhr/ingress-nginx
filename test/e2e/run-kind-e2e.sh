@@ -110,6 +110,7 @@ KIND_WORKERS=$(kind get nodes --name="${KIND_CLUSTER_NAME}" | grep worker | awk 
 echo "[dev-env] copying docker images to cluster..."
 
 kind load docker-image --name="${KIND_CLUSTER_NAME}" --nodes="${KIND_WORKERS}" nginx-ingress-controller:e2e
+kind load docker-image --name="${KIND_CLUSTER_NAME}" --nodes="${KIND_WORKERS}" "${NGINX_BASE_IMAGE}"
 kind load docker-image --name="${KIND_CLUSTER_NAME}" --nodes="${KIND_WORKERS}" "${REGISTRY}"/controller:"${TAG}"
 echo "[dev-env] running e2e tests..."
 make -C "${DIR}"/../../ e2e-test
