@@ -1,4 +1,5 @@
 name: Container Images
+# Push commits that touch this workflow are used to retrigger personal DockerHub image publishing.
 
 on:
   pull_request:
