@@ -153,7 +153,7 @@ test:  ## Run go unit tests.
 		COMMIT_SHA=$(COMMIT_SHA) \
 		REPO_INFO=$(REPO_INFO) \
 		TAG=$(TAG) \
-		GOFLAGS="-buildvcs=false" \
+		GOFLAGS="-buildvcs=false -mod=mod" \
 		test/test.sh
 
 .PHONY: helm-test
