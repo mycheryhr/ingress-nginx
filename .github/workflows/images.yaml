@@ -6,12 +6,17 @@ on:
       - "*"
     paths:
       - 'images/**'
+      - '.github/workflows/images.yaml'
+      - '.github/workflows/zz-tmpl-images.yaml'
 
   push:
     branches:
       - main
+      - release-*
     paths:
       - 'images/**'
+      - '.github/workflows/images.yaml'
+      - '.github/workflows/zz-tmpl-images.yaml'
 
 permissions:
   contents: write
@@ -168,7 +173,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: changes
     if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.changes.outputs.nginx == 'true')
+      (github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release-')) && needs.changes.outputs.nginx == 'true')
     env:
       PLATFORMS: linux/amd64,linux/arm,linux/arm64
     steps:
@@ -190,4 +195,4 @@ jobs:
       - name: build-image
         run: |
           export TAG=$(cat images/nginx/TAG)
-          cd images/nginx/rootfs && docker buildx build --platform=${{ env.PLATFORMS }} --push -t ingressnginx/nginx:${TAG} .
+          cd images/nginx/rootfs && docker buildx build --platform=${{ env.PLATFORMS }} --push -t ${{ secrets.DOCKERHUB_USERNAME }}/nginx:${TAG} .

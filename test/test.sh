@@ -38,4 +38,4 @@ if [ "${#packages[@]}" -eq 0 ]; then
   exit 1
 fi
 
-go test -v "${packages[@]}"
+go test -mod=mod -v "${packages[@]}"
