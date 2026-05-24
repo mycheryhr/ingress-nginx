@@ -259,8 +259,9 @@ jobs:
       - name: build-image
         run: |
           export TAG=$(cat TAG)
+          export TAGNGINX=$(cat images/nginx/TAG)
           export COMMIT_SHA=git-$(git rev-parse --short HEAD)
           export REPO_INFO=$(git config --get remote.origin.url)
           make ARCH=${{ env.ARCH }} build
-          make REGISTRY=${{ secrets.DOCKERHUB_USERNAME }} ARCH=${{ env.ARCH }} image
+          make REGISTRY=${{ secrets.DOCKERHUB_USERNAME }} BASE_IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/nginx:${TAGNGINX} ARCH=${{ env.ARCH }} image
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/controller:${TAG}
