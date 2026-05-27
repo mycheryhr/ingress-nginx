@@ -14,7 +14,7 @@ and hooks at the same time as patching.
 The utility works in two parts, optimized to work better with the Helm provisioning process that leverages pre-install and post-install hooks to execute this as a Kubernetes job.
 
 ## Security Considerations
-This tool may not be adequate in all security environments. If a more complete solution is required, you may want to 
+This tool may not be adequate in all security environments. If a more complete solution is required, you may want to
 seek alternatives such as [jetstack/cert-manager](https://github.com/jetstack/cert-manager)
 
 ## Command line options
