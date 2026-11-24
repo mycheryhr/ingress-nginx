@@ -42,7 +42,7 @@ export MODSECURITY_LIB_VERSION=v3.0.17
 export OWASP_MODSECURITY_CRS_VERSION=v4.30.0
 
 # Check for recent changes: https://github.com/openresty/lua-nginx-module/compare/v0.10.29...master
-export LUA_NGX_VERSION=v0.10.31
+export LUA_NGX_VERSION=v0.10.29
 
 # Check for recent changes: https://github.com/openresty/stream-lua-nginx-module/compare/v0.0.17...master
 export LUA_STREAM_NGX_VERSION=v0.0.17R4
@@ -66,7 +66,7 @@ export LUA_RESTY_BALANCER=v0.05
 export LUA_RESTY_CACHE=v0.15
 
 # Check for recent changes: https://github.com/openresty/lua-resty-core/compare/v0.1.32...master
-export LUA_RESTY_CORE=v0.1.32R1
+export LUA_RESTY_CORE=v0.1.32
 
 # Check for recent changes: https://github.com/cloudflare/lua-resty-cookie/compare/f418d77082eaef48331302e84330488fdc810ef4...master
 export LUA_RESTY_COOKIE_VERSION=f418d77082eaef48331302e84330488fdc810ef4

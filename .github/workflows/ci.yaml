@@ -180,7 +180,10 @@ jobs:
           needs.changes.outputs.baseimage == 'true'
         run: |
             export TAG=$(cat images/nginx/TAG)
-            cd images/nginx/rootfs && docker buildx build --platform=${{ env.PLATFORMS }} --load -t registry.k8s.io/ingress-nginx/nginx:${TAG} .
+            export NGINX_BASE_IMAGE=$(cat NGINX_BASE)
+            cd images/nginx/rootfs && docker buildx build --platform=${{ env.PLATFORMS }} --load \
+              -t registry.k8s.io/ingress-nginx/nginx:${TAG} \
+              -t "${NGINX_BASE_IMAGE}" .
 
       - name: Build images
         env:
@@ -193,8 +196,11 @@ jobs:
           export TAGNGINX=$(cat images/nginx/TAG)
 
           # The e2e job loads NGINX_BASE from NGINX_BASE file into kind.
-          # Ensure the exact image reference exists locally and is cached.
-          docker pull --platform=linux/amd64 "${NGINX_BASE_IMAGE}"
+          # If the base image was built in this job, it is already tagged with
+          # this reference; otherwise pull the published image.
+          if ! docker image inspect "${NGINX_BASE_IMAGE}" >/dev/null 2>&1; then
+            docker pull --platform=linux/amd64 "${NGINX_BASE_IMAGE}"
+          fi
 
           make BASE_IMAGE="${NGINX_BASE_IMAGE}" clean-image build image image-chroot
           make -C test/e2e-image image
