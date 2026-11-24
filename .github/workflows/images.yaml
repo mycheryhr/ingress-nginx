@@ -266,8 +266,13 @@ jobs:
       contents: write
       packages: write
     runs-on: ubuntu-latest
-    needs: changes
+    needs: [changes, nginx]
+    # Wait for the nginx base image job: the controller image is built FROM it.
+    # Run when nginx was skipped (image unchanged) or built successfully.
     if: |
+      always() &&
+      needs.changes.result == 'success' &&
+      (needs.nginx.result == 'success' || needs.nginx.result == 'skipped') &&
       (github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release-')) && needs.changes.outputs.controller == 'true')
     env:
       ARCH: amd64
