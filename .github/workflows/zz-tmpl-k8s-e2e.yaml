@@ -11,7 +11,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   kubernetes:
@@ -45,8 +45,18 @@ jobs:
           SKIP_E2E_IMAGE_CREATION: true
           IS_CHROOT: ${{ inputs.variation == 'CHROOT' }}
         run: |
+          set -o pipefail
           kind get kubeconfig > $HOME/.kube/kind-config-kind
-          make kind-e2e-test
+          make kind-e2e-test 2>&1 | tee e2e-debug.log
+
+      - name: Publish e2e diagnostics ${{ inputs.variation }}
+        if: failure() && inputs.k8s-version == 'v1.36.4' && inputs.variation == ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add e2e-debug.log
+          git commit -m "chore: capture e2e diagnostics [skip ci]" || true
+          git push || true
 
       - name: Upload e2e junit-reports ${{ inputs.variation }}
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0

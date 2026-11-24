@@ -304,6 +304,8 @@ jobs:
 
   kubernetes:
     name: Kubernetes
+    permissions:
+      contents: write
     needs:
       - changes
       - build
@@ -319,6 +321,8 @@ jobs:
 
   kubernetes-chroot:
     name: Kubernetes chroot
+    permissions:
+      contents: write
     needs:
       - changes
       - build

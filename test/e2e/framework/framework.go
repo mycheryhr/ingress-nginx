@@ -184,6 +184,13 @@ func (f *Framework) AfterEach() {
 		return
 	}
 
+	if f.pod == nil {
+		Logf("No running ingress-nginx pod was found, skipping NGINX configuration and log dumps")
+		o, err := f.NamespaceContent()
+		Logf("Namespace content after failure:\n%v\n(error: %v)", o, err)
+		return
+	}
+
 	cmd := "cat /etc/nginx/nginx.conf"
 	o, err := f.ExecCommand(f.pod, cmd)
 	if err != nil {
@@ -263,6 +270,9 @@ func (f *Framework) GetIngressNGINXPod() *v1.Pod {
 func (f *Framework) updateIngressNGINXPod() error {
 	var err error
 	f.pod, err = getIngressNGINXPod(f.Namespace, f.KubeClientSet)
+	if err != nil {
+		f.dumpIngressControllerDiagnostics()
+	}
 	return err
 }
 

@@ -109,6 +109,23 @@ func (f *Framework) NamespaceContent() (string, error) {
 	return execOut.String(), nil
 }
 
+// dumpIngressControllerDiagnostics logs pod state and container logs to help
+// debug controllers that never become ready.
+func (f *Framework) dumpIngressControllerDiagnostics() {
+	commands := []string{
+		fmt.Sprintf("%s get pods --namespace %s -o wide", KubectlPath, f.Namespace),
+		fmt.Sprintf("%s describe pods --namespace %s", KubectlPath, f.Namespace),
+		fmt.Sprintf("%s get events --namespace %s --sort-by=.lastTimestamp", KubectlPath, f.Namespace),
+		fmt.Sprintf("%s logs --namespace %s --selector app.kubernetes.io/name=ingress-nginx --all-containers --tail=200", KubectlPath, f.Namespace),
+	}
+
+	for _, command := range commands {
+		//nolint:gosec // Ignore G204 error
+		out, err := exec.Command("/bin/bash", "-c", command).CombinedOutput()
+		Logf("Diagnostics for %q:\n%s\n(error: %v)", command, string(out), err)
+	}
+}
+
 // newIngressController deploys a new NGINX Ingress controller in a namespace
 func (f *Framework) newIngressController(namespace, namespaceOverlay string) error {
 	// Creates an nginx deployment
