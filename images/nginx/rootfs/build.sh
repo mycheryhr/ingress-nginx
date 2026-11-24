@@ -339,8 +339,9 @@ cd "$BUILD_PATH"
 git clone -n https://github.com/owasp-modsecurity/ModSecurity
 cd ModSecurity/
 git checkout $MODSECURITY_LIB_VERSION
-git submodule init
-git submodule update
+# Mbed TLS is a nested submodule (others/mbedtls/tf-psa-crypto), so it must be
+# initialized recursively or ModSecurity's configure step will not find it.
+git submodule update --init --recursive
 
 sh build.sh
 
