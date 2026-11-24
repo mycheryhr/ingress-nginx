@@ -45,7 +45,7 @@ export OWASP_MODSECURITY_CRS_VERSION=v4.30.0
 export LUA_NGX_VERSION=v0.10.29
 
 # Check for recent changes: https://github.com/openresty/stream-lua-nginx-module/compare/v0.0.17...master
-export LUA_STREAM_NGX_VERSION=v0.0.17R4
+export LUA_STREAM_NGX_VERSION=v0.0.17
 
 # Check for recent changes: https://github.com/openresty/lua-upstream-nginx-module/compare/v0.07...master
 export LUA_UPSTREAM_VERSION=v0.07
@@ -57,7 +57,7 @@ export LUA_CJSON_VERSION=2.1.0.14
 export GEOIP2_VERSION=445df24ef3781e488cee3dfe8a1e111997fc1dfe
 
 # Check for recent changes: https://github.com/openresty/luajit2/compare/v2.1-20250117...v2.1-agentzh
-export LUAJIT_VERSION=v2.1-20261117
+export LUAJIT_VERSION=v2.1-20250117
 
 # Check for recent changes: https://github.com/openresty/lua-resty-balancer/compare/v0.05...master
 export LUA_RESTY_BALANCER=v0.05
@@ -72,25 +72,25 @@ export LUA_RESTY_CORE=v0.1.32
 export LUA_RESTY_COOKIE_VERSION=f418d77082eaef48331302e84330488fdc810ef4
 
 # Check for recent changes: https://github.com/openresty/lua-resty-dns/compare/v0.23...master
-export LUA_RESTY_DNS=v0.24
+export LUA_RESTY_DNS=v0.23
 
 # Check for recent changes: https://github.com/ledgetech/lua-resty-http/compare/v0.17.2...master
-export LUA_RESTY_HTTP=v0.18.0
+export LUA_RESTY_HTTP=v0.17.2
 
 # Check for recent changes: https://github.com/openresty/lua-resty-lock/compare/v0.09...master
-export LUA_RESTY_LOCK=v0.10
+export LUA_RESTY_LOCK=v0.09
 
 # Check for recent changes: https://github.com/openresty/lua-resty-upload/compare/v0.11...master
 export LUA_RESTY_UPLOAD_VERSION=v0.11
 
 # Check for recent changes: https://github.com/openresty/lua-resty-string/compare/v0.16...master
-export LUA_RESTY_STRING_VERSION=v0.19
+export LUA_RESTY_STRING_VERSION=v0.16
 
 # Check for recent changes: https://github.com/openresty/lua-resty-memcached/compare/v0.17...master
-export LUA_RESTY_MEMCACHED_VERSION=v0.18
+export LUA_RESTY_MEMCACHED_VERSION=v0.17
 
 # Check for recent changes: https://github.com/openresty/lua-resty-redis/compare/v0.31...master
-export LUA_RESTY_REDIS_VERSION=v0.34
+export LUA_RESTY_REDIS_VERSION=v0.31
 
 # Check for recent changes: https://github.com/api7/lua-resty-ipmatcher/compare/3e93c53eb8c9884efe939ef070486a0e507cc5be...master
 export LUA_RESTY_IPMATCHER_VERSION=3e93c53eb8c9884efe939ef070486a0e507cc5be
